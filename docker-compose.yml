@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+    api:
+        image: vm-app-api
+        deploy:
+            replicas: 2
+        environment:
+            PORT: 8888
+            FLASK_ENV: Production
+        ports: 
+            - "8888:8888"
