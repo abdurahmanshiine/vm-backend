@@ -15,7 +15,8 @@ class Data:
             #     addImage.__func__('assets/biscuit-2.jpg')
             # ],
             "price": 9.99,
-            "itemsLeft": 3
+            "itemsLeft": 3,
+            "slot": 51
         },
         {
             "__id": 2,
@@ -25,7 +26,8 @@ class Data:
             #     addImage.__func__('assets/cookie-2.jpg')
             # ],
             "price": 7.00,
-            "itemsLeft": 5
+            "itemsLeft": 5,
+            "slot": 62
         },
         {
             "__id": 3,
@@ -35,7 +37,8 @@ class Data:
             #     addImage.__func__('assets/coke-2.jpg')
             # ],
             "price": 2.79,
-            "itemsLeft": 1
+            "itemsLeft": 1,
+            "slot": 33
         },
         {
             "__id": 4,
@@ -45,6 +48,7 @@ class Data:
             #     addImage.__func__('assets/chips-2.jpg')
             # ],
             "price": 5.45,
-            "itemsLeft": 9
+            "itemsLeft": 9,
+            "slot": 100
         }
     ]

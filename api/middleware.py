@@ -1,27 +1,28 @@
-import serial
+import os
 import time
+import serial
+from api.config import DevelopmentConfig
+from api.utils import getItemSlot
+
 
 def dispenseItem(__id, quantity):
-    # TODO: Dispensing code goes here
-    print(f'Item id: {__id}', f'Quantity: {quantity}')
+    slot = getItemSlot(__id)
+    
+    hex_slot = hex(slot)
+    command_suffix = str(hex(int('0x100', 16) - slot))
+    command = f"<01C1{hex_slot[2:].upper()}{command_suffix[2:].upper()}>"
 
+    try:
+        ser = serial.Serial(DevelopmentConfig.COM_PORT, 115200, timeout=1)
+        packet = bytes(command,'ascii')
+        ser.write(packet)
+        ser.flush()
+        time.sleep(5)
+        response = ser.readline()
+        ser.close()
 
-
-
-
-
-# print("vending product in slot 51")
-# print("opening serial COM4..")
-
-# ser = serial.Serial('COM4', 115200, timeout=1)
-# input = "<01C133CD>"
-# print(input)
-
-# packet = bytes(input,'ascii')
-# print(packet, '\n')
-# print('writing bytes:',ser.write(packet),'\n')
-
-# ser.flush()
-# time.sleep(5)
-# print(ser.readline())
-# ser.close()
+        return 'success' if response == '<0x06>' else 'failure', command
+    
+    except:
+        print(DevelopmentConfig.COM_PORT)
+        return 'failure', ''
